@@ -13,21 +13,19 @@ const DBPA = class {
 				totalPathLength += this.distanceArray[i][j];
 			}
 		}
-		var totalNumOfPaths = (((this.nodes - 1) * this.nodes) / 2);	// n(n-1)/2
+		var totalNumOfPaths = (((this.nodes - 1) * this.nodes) / 2);	
 		this.avgPathLength = (totalPathLength / totalNumOfPaths);
 	}
-	//Cost function needs to be changed. We get negative weights currently
 	_costFunction(node_1, node_2) {
 		return (((this.distanceArray[node_1][node_2] /
 			this.avgPathLength) * 200) - this.urgencyArray[node_2]);
 	}
 
 	_formCluster(nodeList){
-		//assign weights to edge of graph
 		var n=nodeList.length
 		var num_clusters=this.drones
 		var clusters={};
-		var weights=[];	//store the weights of all edges
+		var weights=[];	
 		for(var i=0;i<num_clusters;i++){
 			clusters[i]= {'cost':0 ,'nodes':0}
 		}
@@ -48,8 +46,6 @@ const DBPA = class {
 			clusters[i]['nodes']=node
 			weights[node]=Number.MAX_SAFE_INTEGER
 		}
-		//console.log(weights)
-		//console.log(clusters)
 		return clusters
 	}
 	runAlgorithm() {
@@ -58,14 +54,14 @@ const DBPA = class {
 		}).map(Number.call, Number);
 		nodeList.splice(0, 1);
 		var starting_points=this._formCluster(nodeList);
-		console.log(starting_points[0]['cost'])
 		var droneCosts= {};
 		for (var i = 0; i < this.drones; i++) {
 			droneCosts[i] = { 'cost': 0 , 'nodes':[0,], }
 			droneCosts[i]['cost']=starting_points[i]['cost']
 			droneCosts[i]['nodes'].push(starting_points[i]['nodes'])
+			var index = nodeList.indexOf(starting_points[i]['nodes']); 
+			nodeList.splice(index, 1);
 		}
-		console.log(droneCosts)
 		while (nodeList) {
 			var smallest = [null, null, Number.MAX_SAFE_INTEGER];
 			var tempCost;
@@ -83,7 +79,8 @@ const DBPA = class {
 				droneCosts[smallest[0]]['cost'] += smallest[2];
 				droneCosts[smallest[0]]['nodes'].push(smallest[1]);
 				nodeList.splice(nodeList.lastIndexOf(smallest[1]), 1);
-			} else {
+			} 
+			else {
 				break;
 			}
 		}
