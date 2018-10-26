@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+#svg-illustration > circle {
+	opacity: 0.5;
+}
+
+.text-svg {
+	font-family: 'Open Sans', sans-serif;
+	alignment-baseline: middle;
+	fill: white;
+}
+
+path {
+	fill: none;
+	stroke-width: 3px;
+	transition: d 0.35s ease;
+}
+
+#drone-0 {
+	stroke: #43A047;
+}
+
+#drone-1 {
+	stroke: #E91E63;
+}
+
+#drone-2 {
+	stroke: #2196F3;
+}
+
+#state-picker {
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	border-radius: 5px;
+	width: 40vw;
+	height: 10px;
+	cursor: pointer;
+}
+
+#state-picker:hover {
+	opacity: 1;
+}
+
+.container {
+	text-align: center;
+}
+
+#input-value {
+	font-family: 'Open Sans', sans-serif;
+}
+
+table, th, td {
+	text-align: center;
+	border: 1px solid black;
+	border-collapse: collapse;
+	font-family: 'Open Sans', sans-serif;
+}
+
+tr {
+	height: 40px;
+}
+
+table {
+	margin: auto;
+	width: 40vw;
+}
+
+#table-drone-0 {
+	color: #43A047;
+}
+
+#table-drone-1 {
+	color: #E91E63;
+}
+
+#table-drone-2 {
+	color: #2196F3;
+}

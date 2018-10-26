@@ -12,10 +12,39 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 
 	<script type="text/javascript" src="js/DBPA.js"></script>
+	<script type="text/javascript" src="js/illustration.js"></script>
 </head>
 <body>
-	<p id="content"></p>
-
+	<div class="container">
+		<svg viewBox="0 0 1000 500" width="1000" id="svg-illustration">
+			<circle cx="200" cy="280" r="20" id="node-0"></circle>
+			<text x="200" y="280" text-anchor="middle" class="text-svg">0</text>
+			<circle cx="340" cy="100" r="20" id="node-1"></circle>
+			<text x="340" y="100" text-anchor="middle" class="text-svg">1</text>
+			<circle cx="400" cy="250" r="20" id="node-2"></circle>
+			<text x="400" y="250" text-anchor="middle" class="text-svg">2</text>
+			<circle cx="380" cy="425" r="20" id="node-3"></circle>
+			<text x="380" y="425" text-anchor="middle" class="text-svg">3</text>
+			<circle cx="650" cy="450" r="20" id="node-4"></circle>
+			<text x="650" y="450" text-anchor="middle" class="text-svg">4</text>
+			<circle cx="575" cy="150" r="20" id="node-5"></circle>
+			<text x="575" y="150" text-anchor="middle" class="text-svg">5</text>
+			<circle cx="550" cy="300" r="20" id="node-6"></circle>
+			<text x="550" y="300" text-anchor="middle" class="text-svg">6</text>
+			<circle cx="800" cy="166" r="20" id="node-7"></circle>
+			<text x="800" y="166" text-anchor="middle" class="text-svg">7</text>
+			<circle cx="775" cy="375" r="20" id="node-8"></circle>
+			<text x="775" y="375" text-anchor="middle" class="text-svg">8</text>
+		</svg>
+		<div>
+			<input value="0" type="range" min="0" max="100" id="state-picker" oninput="fetchIllustration(this.value)" />
+			<p id="input-value"></p>
+		</div>
+		<div>
+			<table id="state-table">
+			</table>
+		</div>
+	</div>
 	<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
