@@ -1,25 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-input[type="range"]::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
+p, ol, ul {
+	font-size: 20px;
 }
 
 #svg-illustration > circle {
 	opacity: 0.5;
+}
+
+#svg-illustration > circle:hover {
+	opacity: 1;
 }
 
 .text-svg {
@@ -47,12 +37,10 @@ path {
 }
 
 #state-picker {
-	background: #d3d3d3;
 	outline: none;
 	opacity: 0.7;
 	border-radius: 5px;
 	width: 40vw;
-	height: 10px;
 	cursor: pointer;
 }
 
@@ -60,23 +48,18 @@ path {
 	opacity: 1;
 }
 
-.container {
+.illustration-section {
 	text-align: center;
-}
-
-#input-value {
-	font-family: 'Open Sans', sans-serif;
+	padding-bottom: 5vh;
+	margin-bottom: 5vh;
+	padding-top: 3vh;
+	border-radius: 15px;
 }
 
 table, th, td {
 	text-align: center;
 	border: 1px solid black;
 	border-collapse: collapse;
-	font-family: 'Open Sans', sans-serif;
-}
-
-tr {
-	height: 40px;
 }
 
 table {

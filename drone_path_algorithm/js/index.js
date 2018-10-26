@@ -1,8 +1,18 @@
 var fetchIllustration;
 
 const getRandomInt = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+Array.prototype.contains = function(obj) {
+	var i = this.length;
+	while (i--) {
+		if (this[i] == obj) {
+			return true;
+		}
+	}
+	return false;
+}
 
 const createTable = (illustrations, state) => {
 	var stateIllustration = illustrations[state][0];
@@ -45,6 +55,36 @@ const createTable = (illustrations, state) => {
 	}
 }
 
+const displayData = (noOfNodes, noOfDrones, distances, urgencies) => {
+	var htmlHolder = `<tr><th>&#8211;</th>`;
+	for (var node = 0; node < noOfNodes; node++) {
+		htmlHolder += `<th>${node}</th>`;
+	}
+	htmlHolder += `</tr>`;
+	for (var node1 = 0; node1 < noOfNodes; node1++) {
+		htmlHolder += `<tr><th>${node1}</th>`;
+		for (var node2 = 0; node2 < noOfNodes; node2++) {
+			if (node1 !== node2) {
+				htmlHolder += `<td>${distances[node1][node2]}</td>`;
+			} else {
+				htmlHolder += `<td>&#8211;</td>`;
+			}
+		}
+		htmlHolder += `</tr>`;
+	}
+	document.getElementById('nodes-data').innerHTML = htmlHolder;
+	htmlHolder = `<tr>`;
+	for (var node = 0; node < noOfNodes; node++) {
+		htmlHolder += `<th>${node}</th>`;
+	}
+	htmlHolder += `</tr>`;
+	for (var node = 0; node < noOfNodes; node++) {
+		htmlHolder += `<td>${urgencies[node]}</td>`;
+	}
+	htmlHolder += `</tr>`;
+	document.getElementById('drones-data').innerHTML = htmlHolder;
+};
+
 const main = () => {
 	var nodes = 9, drones = 3;
 	var distArray = {}, urgArray = {};
@@ -60,6 +100,7 @@ const main = () => {
 	for (var node = 0; node < nodes; node++) {
 		urgArray[node] = getRandomInt(1, 100);
 	}
+	displayData(nodes, drones, distArray, urgArray);
 	var dbpaInstance = new DBPA(nodes, drones, distArray, urgArray);
 	var drone_path = dbpaInstance.runAlgorithm();
 	var svgNodes = {
@@ -73,15 +114,6 @@ const main = () => {
 		7: [800, 166],
 		8: [775, 375],
 	};
-	Array.prototype.contains = function(obj) {
-	    var i = this.length;
-	    while (i--) {
-	        if (this[i] == obj) {
-	            return true;
-	        }
-	    }
-	    return false;
-	}
 	// Begin Illustration
 	illustrations = getIllustrationStates(drone_path, distArray, svgNodes, nodes);
 	fetchIllustration = val => {

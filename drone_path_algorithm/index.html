@@ -4,21 +4,80 @@
 	<title>drone-path-algorithm</title>
 
 	<meta charset="UTF-8">
-	<!-- meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="" -->
+	<meta name="description" content="CADRS">
+	<meta name="keywords" content="CADRS,drones">
+	<meta name="author" content="Team Spider">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<!-- styling -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="index.css">
-
+	<!-- js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/DBPA.js"></script>
 	<script type="text/javascript" src="js/illustration.js"></script>
 </head>
-<body>
+<body class="indigo white-text">
+	<div class="navbar-fixed">
+		<nav class="indigo darken-4">
+			<div class="nav-wrapper">
+				<a href="/index.html" class="brand-logo">CADRS</a>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="#challenges-sec">Challenges</a></li>
+					<li><a href="#working-sec">Working</a></li>
+					<li><a href="#solution-sec">Solution</a></li>
+					<li><a href="#illustration-sec">Illustration</a></li>
+					<li><a href="#video-sec">Object Detection</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<ul class="sidenav" id="mobile-demo">
+			<li><a href="#challenges-sec">Challenges</a></li>
+			<li><a href="#working-sec">Working</a></li>
+			<li><a href="#solution-sec">Solution</a></li>
+			<li><a href="#illustration-sec">Illustration</a></li>
+			<li><a href="#video-sec">Object Detection</a></li>
+		</ul>
+	</div>
 	<div class="container">
+		<h1>CADRS</h1>
+		<p>CADRS (Coordinated &amp; Autonomous Drone Rescue System) is a drone rescue system in which drones are deployed in a specified area and the drones find the best possible path to deliver various payloads like first aid kits, food and clothing to locations that are not easily accessible. They may also be used to deliver a large number of items in a short span of time.</p>
+		<h2 id="challenges-sec">Challenges</h2>
+		<ul>
+			<li>To get the shortest path from the drone(source) to all the areas of delivery.</li>
+			<li>To be able to move the drones efficiently across the area without collisions and clashes.</li>
+			<li>To get the system of drones to operate in terms of the urgency of the rescue operation.</li>
+			<li>To be able to establish a connection between the drones and a common ground control.</li>
+		</ul>
+		<h2 id="working-sec">Working</h2>
+		<p>The objective of our drone system is to enable a central server detect urgency calls from distinct areas. This centralized server controls a system of drones.</p>
+		<ol>
+			<li>There are known emergency points where people are in need of supplies, called nodes that the drones have to deliver.</li>
+			<li>Drones have cameras on them to enable computer vision into these drones.</li>
+			<li>During their operation of delivering to the known nodes, it may come across new nodes (new people that the drone just recognized during its operation and who need the drone to stop and drop off a few supplies).</li>
+			<li>The Rescue operation is a time-critical application where continuous connectivity to ground personnel is mandatory. Thus, persistent network connectivity is desirable to propagate information efﬁciently. Therfore, Wi-Fi cards have been employed in the drone.</li>
+			<li>Since there's no size constraint on our centralized server, we can employ a Wi-Fi card like IEEE 802.11</li>
+			<li>The central server recieves the alert from the nodes, deploys the drone that corresponding to that region. The drone follows a path corresponding to the most effecient algorithm for travel and is able to deliver the payload in the least amount of time.</li>
+		</ol>
+		<h2 id="solution-sec">Solution</h2>
+		<p>Our drone system is autonomous and controlled by a centralized server. The two most important aspects to take care of are:</p>
+		<ol>
+			<li>Drone Movement Algorithm</li>
+			<li>Object Detection</li>
+		</ol>
+		<p>For the drone movement algorithm, we have designed an algorithm called DBPS (Drones' Best Path Algorithm). It dictates which drones are in-charge of which all nodes and in what order do these drones traverse those nodes. Cost of travelling between one node and another is calculated based on two factors: urgency of the destination node and the distance between source node and destination node. Illustration of the working algorithm is given below.<br><br>For object detection we make use of tensorflow's object detection API which works on images and a python script does all the magic of converting a video stream into frames, passing it to the tensorflow API and with the help of multiprocessing optimize our performace to write the video output into our display screen. Our solution works with real time video streaming as well as video input files to detect objects and output this back into a video showing a demonstration of well the API detects various objects in the video.</p>
+	</div>
+	<div class="container illustration-section white black-text" id="illustration-sec">
+		<h3>Algorithm Illustration [With Randomized Data]</h3>
+		<h5>Distance Between Nodes</h5>
+		<table id="nodes-data"></table>
+		<h5>Urgency of Drones</h5>
+		<table id="drones-data"></table>
 		<svg viewBox="0 0 1000 500" width="1000" id="svg-illustration">
-			<circle cx="200" cy="280" r="20" id="node-0"></circle>
-			<text x="200" y="280" text-anchor="middle" class="text-svg">0</text>
+			<circle cx="200" cy="280" r="20" id="node-0" data-tooltip-content="#text-1"></circle>
+			<text x="200" y="280" text-anchor="middle" id="text-1" class="text-svg">0</text>
 			<circle cx="340" cy="100" r="20" id="node-1"></circle>
 			<text x="340" y="100" text-anchor="middle" class="text-svg">1</text>
 			<circle cx="400" cy="250" r="20" id="node-2"></circle>
@@ -44,6 +103,10 @@
 			<table id="state-table">
 			</table>
 		</div>
+	</div>
+	<div class="container center">
+		<h3 id="video-sec">Object Detection Demo</h3>
+		<iframe src="https://player.vimeo.com/video/296105330" width="1000" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	</div>
 	<script type="text/javascript" src="js/index.js"></script>
 </body>
