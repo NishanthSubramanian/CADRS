@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+p, ol, ul {
+	font-size: 20px;
+}
+
+#svg-illustration > circle {
+	opacity: 0.5;
+}
+
+#svg-illustration > circle:hover {
+	opacity: 1;
+}
+
+.text-svg {
+	font-family: 'Open Sans', sans-serif;
+	alignment-baseline: middle;
+	fill: white;
+}
+
+path {
+	fill: none;
+	stroke-width: 3px;
+	transition: d 0.35s ease;
+}
+
+#drone-0 {
+	stroke: #43A047;
+}
+
+#drone-1 {
+	stroke: #E91E63;
+}
+
+#drone-2 {
+	stroke: #2196F3;
+}
+
+#state-picker {
+	outline: none;
+	opacity: 0.7;
+	border-radius: 5px;
+	width: 40vw;
+	cursor: pointer;
+}
+
+#state-picker:hover {
+	opacity: 1;
+}
+
+.illustration-section {
+	text-align: center;
+	padding-bottom: 5vh;
+	margin-bottom: 5vh;
+	padding-top: 3vh;
+	border-radius: 15px;
+}
+
+table, th, td {
+	text-align: center;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+table {
+	margin: auto;
+	width: 40vw;
+}
+
+#table-drone-0 {
+	color: #43A047;
+}
+
+#table-drone-1 {
+	color: #E91E63;
+}
+
+#table-drone-2 {
+	color: #2196F3;
+}
